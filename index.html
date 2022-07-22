@@ -1,0 +1,109 @@
+<head>
+<script src="https://cdn.jsdelivr.net/npm/luxon@3.0.1/build/global/luxon.min.js" integrity="sha256-uQ0RrcqAQ8NxzNqZH11eXx3qFLAgwEgSQN1V0N1+UlM=" crossorigin="anonymous"></script>
+    <style>
+        .sheets {
+            font-family: "Comic Sans MS";
+            background: rgb(34,193,195);
+            background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+        }
+        .sheets > marquee {
+            opacity: 1;
+            height: unset;s
+        }
+        marquee {
+            opacity: 0;
+            height: 0px;
+        }
+        #style-switcher {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: transparent;
+            border: none;
+            font-size: xx-small;
+        }
+    </style>
+</head>
+<body class="streets">
+    <marquee scrollamount="15">Welcome to my user manual</marquee>
+    <audio autoplay loop src="https://www.hamienet.com/35963_Left-Bank-Two.mp3">
+    </audio>
+    <p>
+        <h2>My basics</h2>
+        I'm <span id="age"></span> years old. I'm married, born in Norway but live in Wigan. I have lived here for <span id="live-time"></span> years. I'm half british. I have one <span id="baby-age"></span> month old son.
+    <p>
+        <h2>My simple rules</h2>
+        <ul>
+            <li>Don't be a dick</li>
+            <li>Don't ask to ask</li>
+            <li>A work place should be a fun place to work</li>
+            <li> Relax, it's going to be fine</li>
+        </ul>
+    </p>
+
+    <p>
+        <h2>How I work</h2>
+        My work/career is just part of me, I don't have a strict work/life separation. This means that sometimes I might be mowing the grass during work hours, and sometimes
+        I will write some code on a quiet night on the couch.
+        I have core hours between 9am and 2pm where I will generally be within 10 minutes of my desk.
+        Outside these hours I might be painting a fence, trimming the hedges or playing with my son.
+
+    </p>
+
+    <p>
+        <h2>How I communicate</h2>
+        I always communicate directly, and rarely bother with the pleasantries (it's a cultural thing). I'm happy to have some small talk, but it should be <i>after</i> any business has been dealt with.
+        It's always easiest to reach me in written form, preferably using async communication. I prefer communication in the following order:
+
+    <ol>
+        <li>Slack</li>
+        <li>Whatsapp/Text</li>
+        <li>Email</li>
+        <li>Homing pigeon</li>
+        <li>Phone call</li>
+    </ol>
+    Note that email might take longer to get a reply, I don't check my email more than 2-3 times a day,
+    and don't have any notifications turned on.
+    </p>
+
+
+    <p>
+        <h2>How to get on my good side</h2>
+        If you have something you need help with, always give me as much information as possible.
+        I can decide what is relevant to me once I have the complete picture. Always try to include as much context as possible too.
+    </p>
+
+    <p>
+        <h2>What annoys me</h2>
+        <ul>
+            <li>People coming to me with problems without having tried a solution first. I'm always happy to help, but I would like to know what <b>hasn't </b>worked first.</li>
+            <li>People who take things too seriously. I live by the lyrics of "always look on the bright side of life". If you can't laugh at it, what can you do?</li>
+            <li>Unnecessary meetings that should have been an email</li>
+        </ul>
+    </p>
+
+    <button id="style-switcher">In the sheets</button>
+    <script>
+        let DateTime = luxon.DateTime;
+        let css_mode = false
+        const now = DateTime.now();
+        document.getElementById("age").innerText = now.diff(DateTime.local(1988, 8, 24)).toFormat("y");
+        document.getElementById("live-time").innerText = now.diff(DateTime.local(2015, 7, 22)).toFormat("y");
+        document.getElementById("baby-age").innerText = now.diff(DateTime.local(2021, 9, 18)).toFormat("M");
+        document.getElementById("style-switcher").addEventListener("click", () => {
+            if(css_mode){
+                document.getElementsByTagName("body")[0].className = "streets";
+                css_mode = false;
+                document.getElementById("style-switcher").innerText = "In the sheets"
+                document.getElementsByTagName("audio")[0].volume = 0
+
+            }else{
+                document.getElementsByTagName("body")[0].className = "sheets";
+                css_mode = true;
+                document.getElementById("style-switcher").innerText = "On the streets"
+                document.getElementsByTagName("audio")[0].play()
+                document.getElementsByTagName("audio")[0].volume = 1
+            }
+        })
+    </script>
+</body>
